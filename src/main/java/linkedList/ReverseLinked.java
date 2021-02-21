@@ -4,7 +4,8 @@ import java.util.List;
 
 
 /**
- * Á´±í·­×ª
+ * åè½¬é“¾è¡¨
+ *
  */
 public class ReverseLinked {
     private class ListNode {

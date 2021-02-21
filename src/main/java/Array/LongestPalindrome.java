@@ -1,30 +1,36 @@
 package Array;
 
+/**
+ * 给你一个字符串 s，找到 s 中最长的回文子串。
+ */
 public class LongestPalindrome {
     public String longestPalindrome(String s) {
-        if (s == null || s.length() < 1) return "";
-        int start = 0, end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = expandAroundCenter(s, i, i);
-            int len2 = expandAroundCenter(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > end - start) {
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
+        int len = s.length();
+        boolean[][] dp = new boolean[len][len];
+        int maxLen = -1;
+        int begin=0;
+        for(int i=0; i<len; i++){
+                dp[i][i] = true;
+        }
+        for(int j=1; j<len; j++){
+            for(int i=0; i<j; i++){
+                if(s.charAt(i)==s.charAt(j)){
+                    if(j-i<3){
+                        dp[i][j]=true;
+                    }else {
+                        dp[i][j] = dp[i+1][j-1];
+                    }
+                }else {
+                    dp[i][j] = false;
+                }
+                if(dp[i][j]&&maxLen<j-i+1){
+                    maxLen = j-i+1;
+                    begin = i;
+                }
             }
         }
-        return s.substring(start, end + 1);
+        return s.substring(begin, begin+maxLen);
     }
-
-    private int expandAroundCenter(String s, int left, int right) {
-        int L = left, R = right;
-        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
-            L--;
-            R++;
-        }
-        return R - L - 1;
-    }
-
     public static void main(String[] args) {
         LongestPalindrome l = new LongestPalindrome();
         System.out.println(l.longestPalindrome("abc"));

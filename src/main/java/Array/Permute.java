@@ -3,7 +3,7 @@ package Array;
 import java.util.*;
 
 /**
- * ¸ø¶¨Ò»¸öÃ»ÓĞÖØ¸´Êı×ÖµÄĞòÁĞ£¬·µ»ØÆäËùÓĞ¿ÉÄÜµÄÈ«ÅÅÁĞ¡£
+ * ç»™å®šä¸€ä¸ª æ²¡æœ‰é‡å¤ æ•°å­—çš„åºåˆ—ï¼Œè¿”å›å…¶æ‰€æœ‰å¯èƒ½çš„å…¨æ’åˆ—ã€‚
  */
 public class Permute {
     public void backtrack(int n,

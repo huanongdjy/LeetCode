@@ -1,9 +1,9 @@
 package Array;
 
 /**
- * ¸ø¶¨ n ¸ö·Ç¸ºÕûÊı±íÊ¾Ã¿¸ö¿í¶ÈÎª 1 µÄÖù×ÓµÄ¸ß¶ÈÍ¼£¬¼ÆËã°´´ËÅÅÁĞµÄÖù×Ó£¬ÏÂÓêÖ®ºóÄÜ½Ó¶àÉÙÓêË®¡£
- * ÊäÈë: [0,1,0,2,1,0,1,3,2,1,2,1]
- * Êä³ö: 6
+ * ç»™å®š n ä¸ªéè´Ÿæ•´æ•°è¡¨ç¤ºæ¯ä¸ªå®½åº¦ä¸º 1 çš„æŸ±å­çš„é«˜åº¦å›¾ï¼Œè®¡ç®—æŒ‰æ­¤æ’åˆ—çš„æŸ±å­ï¼Œä¸‹é›¨ä¹‹åèƒ½æ¥å¤šå°‘é›¨æ°´ã€‚
+ *  è¾“å…¥ï¼šheight = [0,1,0,2,1,0,1,3,2,1,2,1]
+ *  è¾“å‡ºï¼š6
  */
 public class Trap {
     public int trap(int[] height) {
@@ -12,24 +12,30 @@ public class Trap {
         int left = 0;
         int right = height.length -1;
         int r_height = height[right], l_height = height[0];
-        while (left<right){
-            if(height[right] <= height[left]){
-                if(r_height > height[right - 1])
-                    result += r_height - height[right - 1];
+        while(right>left){
+            if(l_height>=r_height){
+                result += r_height;// - height[right];
                 right--;
-                if(r_height <= height[right ])
-                    r_height=height[right ];
-                continue;
-            }
-            if(height[right] >= height[left]){
-                if(l_height > height[left+1])
-                    result += l_height - height[left+1];
+//                r_height = Math.max(height[right], r_height);
+            }else {
+                result +=l_height;// - height[left];
                 left++;
-                if(l_height <= height[left])
-                    l_height = height[left];
-                continue;
+//                l_height = Math.max(height[left], l_height);
+            }
+            if(l_height <= height[left]){
+                l_height = height[left];
+            }
+            if(r_height <= height[right]){
+                r_height = height[right];
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        Trap tp = new Trap();
+//        int[] nums = {0,1,0,2,1,0,1,3,2,1,2,1};
+        int[] nums = {3,2,5,4,6,2};
+        System.out.println(tp.trap(nums));
     }
 }

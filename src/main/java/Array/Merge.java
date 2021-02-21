@@ -3,7 +3,7 @@ package Array;
 import java.util.*;
 
 /**
- * ¸ø³öÒ»¸öÇø¼äµÄ¼¯ºÏ£¬ÇëºÏ²¢ËùÓĞÖØµşµÄÇø¼ä¡£
+ * ç»™å‡ºä¸€ä¸ªåŒºé—´çš„é›†åˆï¼Œè¯·åˆå¹¶æ‰€æœ‰é‡å çš„åŒºé—´ã€‚
  */
 public class Merge {
     public int[][] merge(int[][] intervals) {
@@ -11,11 +11,12 @@ public class Merge {
         if (intervals == null || intervals.length == 0)
             return res.toArray(new int[0][]);
 
-        // Arrays.sort(intervals, (a, b) -> a[0] - b[0]);// a[0] - b[0]´óÓÚ0¾Í½»»»Ë³Ğò
-        // ¸ù¾İ¶şÎ¬Êı×éµÚÒ»¸öÊı×Ö´óĞ¡°´Ã¿Ò»ĞĞÕûÌåÅÅĞò
+        // Arrays.sort(intervals, (a, b) -> a[0] - b[0]);// a[0] - b[0]å¤§äº0å°±äº¤æ¢é¡ºåº
+        // æ ¹æ®äºŒç»´æ•°ç»„ç¬¬ä¸€ä¸ªæ•°å­—å¤§å°æŒ‰æ¯ä¸€è¡Œæ•´ä½“æ’åº
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
+                // TODO Auto-generated method stub
                 return o1[0] - o2[0];
             }
         });
@@ -23,8 +24,8 @@ public class Merge {
         while (i < intervals.length) {
             int left = intervals[i][0];
             int right = intervals[i][1];
-            // i²»ÄÜµ½×îºóÒ»ĞĞ,ËùÒÔÒªĞ¡ÓÚ(Êı×éµÄ³¤¶È - 1)
-            // ÅĞ¶ÏËùÔÚĞĞµÄrightºÍÏÂÒ»ĞĞµÄleft´óĞ¡,¶ÔrightÖØĞÂ½øĞĞ¸³×î´óÖµ,Ö®ºóÔÙ²»¶Ï½øĞĞwhileÑ­»·ÅĞ¶Ï
+            // iä¸èƒ½åˆ°æœ€åä¸€è¡Œ,æ‰€ä»¥è¦å°äº(æ•°ç»„çš„é•¿åº¦ - 1)
+            // åˆ¤æ–­æ‰€åœ¨è¡Œçš„rightå’Œä¸‹ä¸€è¡Œçš„leftå¤§å°,å¯¹righté‡æ–°è¿›è¡Œèµ‹æœ€å¤§å€¼,ä¹‹åå†ä¸æ–­è¿›è¡Œwhileå¾ªç¯åˆ¤æ–­
             while (i < intervals.length - 1 && right >= intervals[i + 1][0]) {
                 i++;
                 right = Math.max(right, intervals[i][1]);
